@@ -1,0 +1,46 @@
+{
+  "name": "time-machine-react",
+  "version": "1.0.0",
+  "main": "dist-electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"wait-on http://localhost:3000 && npm run dev:electron\"",
+    "dev:vite": "vite --port 3000",
+    "dev:electron": "NODE_ENV=development electron ./dist-electron/main.js",
+    "build": "npm run build:vite && npm run build:electron",
+    "build:vite": "vite build",
+    "build:electron": "tsc electron/main.ts --outDir dist-electron && tsc electron/preload.ts --outDir dist-electron",
+    "dist": "npm run build && electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/react": "^19.1.15",
+    "@types/react-dom": "^19.1.9",
+    "electron": "^38.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^9.2.1",
+    "electron-builder": "^26.0.12",
+    "vite": "^7.1.7",
+    "wait-on": "^9.0.1"
+  },
+  "build": {
+    "appId": "com.uds.time-machine-react",
+    "productName": "Time Machine React",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist-renderer/**/*",
+      "dist-electron/**/*"
+    ]
+  }
+}
