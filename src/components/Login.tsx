@@ -109,4 +109,3 @@ const Login: React.FC<LoginProps> = () => {
 }
 
 export default Login
- default Login
