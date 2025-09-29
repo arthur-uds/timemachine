@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import { useAuth } from '../contexts/AuthContext'
 import './Login.css'
-
-// Importar a imagem do logo original
-
 
 interface LoginProps {}
 
@@ -12,26 +8,35 @@ const Login: React.FC<LoginProps> = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const { login, isLoading } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    setIsLoading(true)
     
     // Validação básica conforme o original
     if (!email) {
       setError('E-mail inválido.')
+      setIsLoading(false)
       return
     }
     if (!password) {
       setError('Senha inválida.')
+      setIsLoading(false)
       return
     }
 
-    const success = await login(email, password)
-    if (!success) {
-      setError('E-mail ou senha inválidos.')
-    }
+    // Simular autenticação
+    setTimeout(() => {
+      if (email === 'test@example.com' && password === 'password') {
+        console.log('Login successful')
+        // Em um cenário real, você redirecionaria para o dashboard
+      } else {
+        setError('E-mail ou senha inválidos.')
+      }
+      setIsLoading(false)
+    }, 1000)
   }
 
   const closeApp = () => {
@@ -44,6 +49,7 @@ const Login: React.FC<LoginProps> = () => {
   return (
     <div id="login" className="login-container">
       <div className="draggable-header">
+        <div className="empty-space"></div> {/* Para alinhar o logo ao centro */}
         <img src="/logo-completa-branco.png" alt="Logo UDS" className="logo-uds" />
         <button className="nodraggable close-button" onClick={closeApp}>
           <span className="material-icons">close</span>
@@ -57,7 +63,6 @@ const Login: React.FC<LoginProps> = () => {
 
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
-          <label htmlFor="email" className="sr-only">Login</label>
           <div className="input-with-icon">
             <span className="material-icons">email</span>
             <input
@@ -72,7 +77,6 @@ const Login: React.FC<LoginProps> = () => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="password" className="sr-only">Senha</label>
           <div className="input-with-icon">
             <span className="material-icons">vpn_key</span>
             <input
