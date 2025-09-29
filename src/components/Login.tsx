@@ -3,8 +3,8 @@ import { useAuth } from '../contexts/AuthContext'
 import './Login.css'
 
 // Importar a imagem do logo original
-import logoTimeMachineAzul from '../../electron-app-develop-original/electron-app-develop/src/renderer/assets/logo-time-machine-azul.png'
-import logoCompletaBranco from '../../electron-app-develop-original/electron-app-develop/src/renderer/assets/logo-completa-branco.png'
+import logoTimeMachineAzul from '/logo-time-machine-azul.png'
+import logoCompletaBranco from '/logo-completa-branco.png'
 
 interface LoginProps {}
 

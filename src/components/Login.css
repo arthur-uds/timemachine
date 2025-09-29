@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -168,8 +170,5 @@
   background-color: #ffebee;
   color: #c62828;
   border: 1px solid #ef9a9a;
+  margin-bottom: 10px;
 }
-
-/* Material Icons */
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
