@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 import './Login.css'
 
 interface LoginProps {}
@@ -6,18 +7,17 @@ interface LoginProps {}
 const Login: React.FC<LoginProps> = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { login, isLoading } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
+    setError('')
     
-    // Simular autenticação
-    setTimeout(() => {
-      console.log('Login attempt:', { email, password })
-      setIsLoading(false)
-      // Aqui seria a lógica real de autenticação
-    }, 1000)
+    const success = await login(email, password)
+    if (!success) {
+      setError('Credenciais inválidas. Tente novamente.')
+    }
   }
 
   return (
@@ -52,6 +52,12 @@ const Login: React.FC<LoginProps> = () => {
               required
             />
           </div>
+          
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
           
           <button 
             type="submit" 
