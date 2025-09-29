@@ -3,8 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import './Login.css'
 
 // Importar a imagem do logo original
-import logoTimeMachineAzul from '/logo-time-machine-azul.png'
-import logoCompletaBranco from '/logo-completa-branco.png'
+
 
 interface LoginProps {}
 
@@ -45,14 +44,14 @@ const Login: React.FC<LoginProps> = () => {
   return (
     <div id="login" className="login-container">
       <div className="draggable-header">
-        <img src={logoCompletaBranco} alt="Logo UDS" className="logo-uds" />
+        <img src="/logo-completa-branco.png" alt="Logo UDS" className="logo-uds" />
         <button className="nodraggable close-button" onClick={closeApp}>
           <span className="material-icons">close</span>
         </button>
       </div>
 
       <div className="login-content">
-        <img className="logo-time-machine" src={logoTimeMachineAzul} alt="Time Machine Logo" />
+        <img className="logo-time-machine" src="/logo-time-machine-azul.png" alt="Time Machine Logo" />
         <span className="title">Time Machine</span>
       </div>
 
